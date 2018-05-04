@@ -55,42 +55,15 @@ public class Bookshelf {
     }
 
     private String gettingTitle(String titleString) {
-        if (titleString.contains("_")) {
-            String title = "";
-            String[] titleStringSplit = titleString.split("_");
-            for (String titleElement : titleStringSplit) {
-                title += titleElement + " ";
-            }
-            return title.trim();
-        } else {
-            return titleString;
-        }
+        return removeUnderline(titleString);
     }
 
     private String gettingAuthor(String authorString) {
-        if (authorString.contains("_")) {
-            String author = "";
-            String[] authorStringSplit = authorString.split("_");
-            for (String titleElement : authorStringSplit) {
-                author += titleElement + " ";
-            }
-            return author.trim();
-        } else {
-            return authorString;
-        }
+        return removeUnderline(authorString);
     }
 
     private String gettingPublisher(String publisherString) {
-        if (publisherString.contains("_")) {
-            String publisher = "";
-            String[] publisherStringSplit = publisherString.split("_");
-            for (String publisherElement : publisherStringSplit) {
-                publisher += publisherElement + " ";
-            }
-            return publisher.trim();
-        } else {
-            return publisherString;
-        }
+        return removeUnderline(publisherString);
     }
 
     private int gettingDate (String dateString) {
@@ -98,16 +71,11 @@ public class Bookshelf {
     }
 
     private String getting5thParameter(String paramString) {
-        if (paramString.contains("_")) {
-            String parameter = "";
-            String[] paramStringSplit = paramString.split("_");
-            for (String paramElement : paramStringSplit) {
-                parameter += paramElement + " ";
-            }
-            return parameter.trim();
-        } else {
-            return paramString;
-        }
+        return removeUnderline(paramString);
+    }
+
+    private String removeUnderline(String paramString) {
+       return paramString = paramString.replace("_", " ");
     }
 
 
@@ -140,14 +108,18 @@ public class Bookshelf {
         iterator += 2;
     }
 
+    private void createSpecificBook() {
+        if (isTextbook()) {
+            createTextbook();
+        }
+        else {
+            createNovel();
+        }
+    }
+
     private void createBook() {
         if (hasParameters()) {
-            if (isTextbook()) {
-                createTextbook();
-            }
-            else {
-                createNovel();
-            }
+            createSpecificBook();
         } else {
           createDefaultBook();
         }
@@ -170,5 +142,4 @@ public class Bookshelf {
             System.out.println(book);
         }
     }
-
 }
