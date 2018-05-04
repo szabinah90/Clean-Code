@@ -1,0 +1,7 @@
+/out/
+/.idea/
+
+*.odt
+*.odt#
+*.txt
+*.iml
